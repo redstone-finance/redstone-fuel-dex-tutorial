@@ -1,0 +1,10 @@
+[project]
+authors = ["RedStone Finance"]
+entry = "token.sw"
+forc-version = "0.35.0"
+license = "Apache-2.0"
+name = "token"
+organization = "RedStone"
+
+[dependencies]
+common = { path = "../common" }

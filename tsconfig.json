@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ES2016",
+    "skipLibCheck": true,
+    "module": "ES6",
+    "esModuleInterop": true,
+    "strict": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+  }
+}

@@ -1,0 +1,11 @@
+[project]
+authors = ["RedStone Finance"]
+entry = "dex.sw"
+forc-version = "0.35.0"
+license = "Apache-2.0"
+name = "dex"
+organization = "RedStone"
+
+[dependencies]
+common = { path = "../common" }
+redstone = { git = "https://github.com/redstone-finance/redstone-fuel-sdk", tag = "0.2.1-pre" }

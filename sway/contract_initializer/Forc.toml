@@ -1,0 +1,14 @@
+[project]
+authors = ["RedStone Finance"]
+entry = "main.sw"
+forc-version = "0.35.0"
+license = "Apache-2.0"
+name = "initializer"
+organization = "RedStone"
+
+[constants]
+TOKEN_CONTRACT_ID = { type = "b256", value = "0x6cb020a8d81d9394b9b3c70e0994b33835d43dd8069b0e427be574a2ee3c3437" }
+DEX_CONTRACT_ID = { type = "b256", value = "0x55797523ba8c98e0187a4b6db622f2c62bc2ad90c04a055c3910ee65842da792" }
+
+[dependencies]
+common = { path = "../common" }

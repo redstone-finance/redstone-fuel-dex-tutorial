@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "tsc --build",
+    "run": "node dist/index.js"
+  },
+  "dependencies": {
+    "@redstone-finance/fuel-connector": "^0.2.2",
+    "graphql-request": "5.1.0",
+    "fuels": "0.42.0"
+  },
+  "devDependencies": {
+    "@types/elliptic": "^6.4.14"
+  }
+}
