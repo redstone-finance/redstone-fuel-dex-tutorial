@@ -1081,3 +1081,11 @@ After having it executed, check the balance once again:
 The balance of our Tokens is increased by `0.001` multiplied of the current market `ETH` price.
 The balance of the native assets is decreased by `0.001` (the amount being exchanged) + the transaction cost,
 related to the defined `gasPrice` (`1` means `1 / 10 ** 9 ETH`) multiplied by the gas usage of processing the RedStone payload on-chain.
+
+# Live demo
+
+The working application (with an interface) you can test here:
+https://fuel-dex.redstone.finance/
+
+The repository of that application is here:
+https://github.com/redstone-finance/redstone-fuel-dex
