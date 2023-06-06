@@ -11,7 +11,6 @@
 
 import type {
   BigNumberish,
-  BN,
   BytesLike,
   Contract,
   DecodedValue,

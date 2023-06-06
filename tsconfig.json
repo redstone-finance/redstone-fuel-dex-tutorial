@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2016",
     "skipLibCheck": true,
-    "module": "ES6",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "strict": true,
     "rootDir": "src",
