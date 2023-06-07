@@ -897,15 +897,9 @@ The `dataServiceId` here must correspond with the signer passed to the Dex contr
 
 # Interface
 
-The interface depends on you. We'll be concentrating next on the function invocations directly from the code. 
-But the sample interface is available in this repository (https://github.com/redstone-finance/redstone-fuel-dex),
-also the classes supporting the integration with the fuel-wallet Chrome extension. 
-* useFuel.tsx (to be linked)
-* FuelBlock.tsx (to be linked)
-
-[?] See https://wallet.fuel.network/docs/dev/getting-started/
-
 ## CLI
+
+We'll be concentrating here on the shell function invocations by using `npx`.
 
 ### Checking the account's balance
 
@@ -1082,10 +1076,62 @@ The balance of our Tokens is increased by `0.001` multiplied of the current mark
 The balance of the native assets is decreased by `0.001` (the amount being exchanged) + the transaction cost,
 related to the defined `gasPrice` (`1` means `1 / 10 ** 9 ETH`) multiplied by the gas usage of processing the RedStone payload on-chain.
 
-# Live demo
+### Withdrawing funds
+
+Remember that only the contract-owner can perform the operation - otherwise it panics.
+
+Let's create the script [`src/scripts/withdraw.tsx`](src/scripts/withdraw.tsx)
+
+```typescript
+import { Provider, Wallet } from "fuels";
+import { DexContractConnector } from "../dex/DexContractConnector";
+import {
+    FUEL_DEX_CONTRACT_ID,
+    FUEL_TOKEN_ID,
+    FUEL_RPC_URL,
+} from "../config/constants";
+
+const privateKey = process.argv[2];
+const wallet = Wallet.fromPrivateKey(privateKey, new Provider(FUEL_RPC_URL));
+const connector = new DexContractConnector(
+    wallet,
+    FUEL_DEX_CONTRACT_ID,
+    FUEL_TOKEN_ID
+);
+
+async function main() {
+    let adapter = await connector.getAdapter();
+
+    console.log(await adapter.withdrawFunds());
+}
+
+main();
+```
+
+After checking the balance once again, we get:
+
+```json
+{
+  ETH: 0.009999993,
+  '0x6cb020a8d81d9394b9b3c70e0994b33835d43dd8069b0e427be574a2ee3c3437': 3.628306557
+}
+```
+
+The `ETH`s balance got back to the previous value (decreased by transaction costs) 
+as all operations were performed by the contract-owner.
+
+## Graphic interface
+
+The sample graphic interface is available in this repository (https://github.com/redstone-finance/redstone-fuel-dex),
+also the classes supporting the integration with the fuel-wallet Chrome extension.
+* [useFuel.tsx](https://github.com/redstone-finance/redstone-fuel-dex/blob/main/src/hooks/useFuel.tsx) - 
+a component realizing the implementation of fuel-wallet connection
+* [FuelBlock.tsx](https://github.com/redstone-finance/redstone-fuel-dex/blob/main/src/hooks/FuelBlock.tsx) - 
+a component using if the Chrome extension is installed or displaying an input field for entering the key of the account to be connected.
+* [Dex.tsx](https://github.com/redstone-finance/redstone-fuel-dex/blob/main/src/dex/Dex.tsx)  
+a component showing how to determine if the wallet is connected or not by using the components above.
+
+[?] See https://wallet.fuel.network/docs/dev/getting-started/
 
 The working application (with an interface) you can test here:
 https://fuel-dex.redstone.finance/
-
-The repository of that application is here:
-https://github.com/redstone-finance/redstone-fuel-dex
